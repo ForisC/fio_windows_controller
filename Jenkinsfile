@@ -13,7 +13,7 @@ node {
                     keyFileVariable: 'identity',
                     passphraseVariable: '',
                     usernameVariable: 'userName',
-                    asswordVariable: 'PASSWORD'
+                    passwordVariable: 'PASSWORD'
                 )
             ]
     ) {
