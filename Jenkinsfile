@@ -61,6 +61,8 @@ node {
             sh 'cat randwrite.json'
             sh 'cat read.json'
             sh 'cat write.json'
+            sh 'ls -al'
+            sh 'pwd'
             
         }
         stage("plot"){
