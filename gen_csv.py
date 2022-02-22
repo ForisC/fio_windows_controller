@@ -3,10 +3,10 @@
 import json
 from collections import OrderedDict
 
-all_data = OrderedDict({"example_randread.json": "read",
-                        "example_randwrite.json": "write",
-                        "example_read.json": "read",
-                        "example_write.json": "write"})
+all_data = OrderedDict({"randread.json": "read",
+                        "randwrite.json": "write",
+                        "read.json": "read",
+                        "write.json": "write"})
 
 csv = ""
 keys = all_data.keys()
