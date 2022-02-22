@@ -1,23 +1,20 @@
 def remote = [:]
 remote.name = 'node-1'
 remote.host = params.client
-remote.user = 'administrator'
 remote.allowAnyHosts = true
 currentBuild.description = env.Description
 
 node {
     withCredentials(
             [
-                sshUserPrivateKey(
-                    credentialsId: 'ubuntu_clinet',
-                    keyFileVariable: 'identity',
-                    passphraseVariable: '',
-                    usernameVariable: 'userName',
+                usernamePassword(
+                    credentialsId: '1036483a-5000-4595-b5b3-e8c501bd15ea',
+                    usernameVariable: 'USERNAME',
                     passwordVariable: 'PASSWORD'
                 )
             ]
     ) {
-        remote.user = userName
+        remote.user = USERNAME
         remote.password  = PASSWORD
         stage('Env Preparing') {
             sshCommand remote: remote, command: 'taskkill /f /T /IM fio.exe'
