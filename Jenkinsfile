@@ -49,8 +49,7 @@ node {
             ' -name=write --output=write.json --output-format=json'
             sshCommand remote: remote, command: command
         }
-        stage('collect data') {
-            workspace = env.WORKSPACE
+        stage('Collect data') {
             sshGet remote: remote, from: 'randread.json', into: 'randread.json', override: true
             sshGet remote: remote, from: 'randwrite.json', into: 'randwrite.json', override: true
             sshGet remote: remote, from: 'read.json', into: 'read.json', override: true
@@ -59,9 +58,7 @@ node {
             sh 'cat randwrite.json'
             sh 'cat read.json'
             sh 'cat write.json'
-            sh 'python3 gen_csv.py'            
-        }
-        stage("plot"){
+            sh 'python3 gen_csv.py'
             plot csvSeries: [[
                             file: 'data.csv',
                             exclusionValues: '',
@@ -80,6 +77,7 @@ node {
             yaxis: 'iops',
             yaxisMaximum: '',
             yaxisMinimum: ''
-            }
-    }
+            }       
+        }
+
 }
