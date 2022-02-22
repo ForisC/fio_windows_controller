@@ -10,6 +10,7 @@ all_data = OrderedDict({"randread.json": "read",
 
 csv = ""
 keys = all_data.keys()
+keys = [x.split(".")[0] for x in keys]
 csv += ",".join(keys)
 csv += "\n"
 
