@@ -72,7 +72,7 @@ node {
             group: 'Plot Group',
             title: 'FIO test',
             style: 'line',
-            exclZero: false,
+            exclZero: true,
             keepRecords: false,
             logarithmic: false,
             numBuilds: '10',
