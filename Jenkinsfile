@@ -63,25 +63,25 @@ node {
             sh 'cat write.json'
             
         }
-    //     stage("plot"){
-    //         plot csvSeries: [[
-    //                         file: 'data.csv',
-    //                         exclusionValues: '',
-    //                         displayTableFlag: false,
-    //                         inclusionFlag: 'OFF',
-    //                         url: '']],
-    //         csvFileName: "plot-iops.csv",
-    //         group: 'Plot Group',
-    //         title: 'FIO test',
-    //         style: 'line',
-    //         exclZero: false,
-    //         keepRecords: false,
-    //         logarithmic: false,
-    //         numBuilds: '10',
-    //         useDescr: true,
-    //         yaxis: 'iops',
-    //         yaxisMaximum: '',
-    //         yaxisMinimum: ''
-    //         }
+        stage("plot"){
+            plot csvSeries: [[
+                            file: 'data.csv',
+                            exclusionValues: '',
+                            displayTableFlag: false,
+                            inclusionFlag: 'OFF',
+                            url: '']],
+            csvFileName: "plot-iops.csv",
+            group: 'Plot Group',
+            title: 'FIO test',
+            style: 'line',
+            exclZero: false,
+            keepRecords: false,
+            logarithmic: false,
+            numBuilds: '10',
+            useDescr: true,
+            yaxis: 'iops',
+            yaxisMaximum: '',
+            yaxisMinimum: ''
+            }
     }
 }
