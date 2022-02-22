@@ -17,6 +17,7 @@ node {
         remote.user = USERNAME
         remote.password  = PASSWORD
         stage('Env Preparing') {
+            git branch: 'main', url: 'https://github.com/foris323/fio_windows_controller.git'
             sshCommand remote: remote, command: 'taskkill /f /T /IM fio.exe || exit /b 0'
         }
 
