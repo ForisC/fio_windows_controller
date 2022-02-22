@@ -77,7 +77,6 @@ node {
             yaxis: 'iops',
             yaxisMaximum: '',
             yaxisMinimum: ''
-            }       
         }
-
+    }
 }
