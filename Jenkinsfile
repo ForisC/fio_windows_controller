@@ -24,10 +24,10 @@ node {
         }
 
         stage('FIO random read') {
-            command = ("fio -filename=${env.drive}:\\fio -direct=1 -iodepth 1 "
-            '-thread -rw=randread -ioengine=windowsaio '
-            "-bs=16k -size=${env.TestSize} -numjobs=30 -runtime=1000 -group_reporting "
-            '-name=randread --output=randread.log --output-format=json')
+            command = "fio -filename=${env.drive}:\\fio -direct=1 -iodepth 1" +
+            ' -thread -rw=randread -ioengine=windowsaio' +
+            " -bs=16k -size=${env.TestSize} -numjobs=30 -runtime=1000 -group_reporting" +
+            ' -name=randread --output=randread.log --output-format=json'
             sshCommand remote: remote, command: command
         }
         // stage("FIO sequential read") {
