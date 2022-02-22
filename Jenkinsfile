@@ -43,6 +43,7 @@ node {
         stage('collect data') {
             workspace = env.WORKSPACE
             sh 'ls -al /var/lib/jenkins/workspace'
+            sh 'pwd'
             sh "mkdir -p $workspace"
             sshGet remote: remote, from: 'randread.log', into: 'randread.log', override: true
             // sshGet remote: remote, from: 'write.log', into: 'write.log', override: true
