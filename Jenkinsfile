@@ -51,9 +51,6 @@ node {
         }
         stage('collect data') {
             workspace = env.WORKSPACE
-            sh 'ls -al /var/lib/jenkins/workspace'
-            sh 'pwd'
-            sh "mkdir -p $workspace"
             sshGet remote: remote, from: 'randread.json', into: 'randread.json', override: true
             sshGet remote: remote, from: 'randwrite.json', into: 'randwrite.json', override: true
             sshGet remote: remote, from: 'read.json', into: 'read.json', override: true
@@ -62,9 +59,7 @@ node {
             sh 'cat randwrite.json'
             sh 'cat read.json'
             sh 'cat write.json'
-            sh 'ls -al'
-            sh 'pwd'
-            
+            sh 'python3 gen_csv.py'            
         }
         stage("plot"){
             plot csvSeries: [[
