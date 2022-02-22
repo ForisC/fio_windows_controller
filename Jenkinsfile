@@ -21,6 +21,7 @@ node {
         }
 
         stage('FIO random read') {
+            sshCommand remote: remote, command: 'echo %cd%'
             command = "fio -filename=${env.drive}:\\fio -direct=1 -iodepth 1" +
             ' -thread -rw=randread -ioengine=windowsaio' +
             " -bs=16k -size=${env.TestSize} -numjobs=30 -runtime=1000 -group_reporting" +
