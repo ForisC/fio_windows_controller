@@ -24,28 +24,28 @@ node {
             command = "fio -filename=${env.drive}:\\fio -direct=1 -iodepth 1" +
             ' -thread -rw=randread -ioengine=windowsaio' +
             " -bs=16k -size=${env.TestSize} -numjobs=30 -runtime=1000 -group_reporting" +
-            ' -name=randread --output=randread.log --output-format=json'
+            ' -name=randread --output=randread.json --output-format=json'
             sshCommand remote: remote, command: command
         }
         stage("FIO random write") {
             command = "fio -filename=${env.drive}:\\fio -direct=1 -iodepth 1" +
             ' -thread -rw=randwrite -ioengine=windowsaio' +
             " -bs=16k -size=${env.TestSize} -numjobs=30 -runtime=1000 -group_reporting" +
-            ' -name=randwrite --output=randwrite.log --output-format=json'
+            ' -name=randwrite --output=randwrite.json --output-format=json'
             sshCommand remote: remote, command: command
         }
         stage("FIO sequential read") {
             command = "fio -filename=${env.drive}:\\fio -direct=1 -iodepth 1" +
             ' -thread -rw=read -ioengine=windowsaio' +
             " -bs=16k -size=${env.TestSize} -numjobs=30 -runtime=1000 -group_reporting" +
-            ' -name=read --output=read.log --output-format=json'
+            ' -name=read --output=read.json --output-format=json'
             sshCommand remote: remote, command: command
         }
         stage("FIO sequential write") {
             command = "fio -filename=${env.drive}:\\fio -direct=1 -iodepth 1" +
             ' -thread -rw=write -ioengine=windowsaio' +
             " -bs=16k -size=${env.TestSize} -numjobs=30 -runtime=1000 -group_reporting" +
-            ' -name=write --output=write.log --output-format=json'
+            ' -name=write --output=write.json --output-format=json'
             sshCommand remote: remote, command: command
         }
         stage('collect data') {
@@ -53,14 +53,14 @@ node {
             sh 'ls -al /var/lib/jenkins/workspace'
             sh 'pwd'
             sh "mkdir -p $workspace"
-            sshGet remote: remote, from: 'randread.log', into: 'randread.log', override: true
-            sshGet remote: remote, from: 'randwrite.log', into: 'randwrite.log', override: true
-            sshGet remote: remote, from: 'read.log', into: 'read.log', override: true
-            sshGet remote: remote, from: 'write.log', into: 'write.log', override: true
-            sh 'cat randread.log'
-            sh 'cat randwrite.log'
-            sh 'cat read.log'
-            sh 'cat write.log'
+            sshGet remote: remote, from: 'randread.json', into: 'randread.json', override: true
+            sshGet remote: remote, from: 'randwrite.json', into: 'randwrite.json', override: true
+            sshGet remote: remote, from: 'read.json', into: 'read.json', override: true
+            sshGet remote: remote, from: 'write.json', into: 'write.json', override: true
+            sh 'cat randread.json'
+            sh 'cat randwrite.json'
+            sh 'cat read.json'
+            sh 'cat write.json'
             
         }
     //     stage("plot"){
