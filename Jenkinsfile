@@ -17,7 +17,7 @@ node {
         remote.user = USERNAME
         remote.password  = PASSWORD
         stage('Env Preparing') {
-            sshCommand remote: remote, command: 'taskkill /f /T /IM fio.exe'
+            sshCommand remote: remote, command: 'taskkill /f /T /IM fio.exe && exit 0'
         }
 
         stage('FIO random read') {
