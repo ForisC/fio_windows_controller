@@ -6,13 +6,13 @@ currentBuild.description = env.Description
 
 node {
     withCredentials(
-            [
-                usernamePassword(
-                    credentialsId: '1036483a-5000-4595-b5b3-e8c501bd15ea',
-                    usernameVariable: 'USERNAME',
-                    passwordVariable: 'PASSWORD'
-                )
-            ]
+        [
+            usernamePassword(
+                credentialsId: 'windows_client',
+                usernameVariable: 'USERNAME',
+                passwordVariable: 'PASSWORD'
+            )
+        ]
     ) {
         remote.user = USERNAME
         remote.password  = PASSWORD
